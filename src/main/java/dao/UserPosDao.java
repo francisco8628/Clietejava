@@ -102,7 +102,7 @@ public class UserPosDao {
 			String sql = "update userposjava set nome = ? where id = " + userPosJava.getId();
 			PreparedStatement update = connetion.prepareStatement(sql); // prepara a conexão
 			update.setString(1, userPosJava.getNome());
-			
+			//update.setString(2, userPosJava.getEmail());
 			
 			update.execute();
 			connetion.commit();
@@ -166,7 +166,7 @@ public class UserPosDao {
 		}
 	}//fim do metodo salvarTelefone
 	
-	public List<BeanUserFone> listUserfone(Long idUser) {
+	public List<BeanUserFone> listUserfone(Long idUser) throws Exception {   //retorna uma lista de usuarios com telefone
 		
 		List<BeanUserFone> listUserfone = new ArrayList<BeanUserFone>();
 		
@@ -175,29 +175,50 @@ public class UserPosDao {
 			sql +=	" on fone.usuariopessoa = userp.id ";
 			sql +=	" where userp.id = "+ idUser;
 		    
-			try {
+			
 				
 				PreparedStatement statement = connetion.prepareStatement(sql);
                 ResultSet resutado = statement.executeQuery();
                 
-               while(resutado.next()) {
+               while(resutado.next()) {      //percorre a lista enquanto ela tiver dados
             	 BeanUserFone userFone = new BeanUserFone();
             	 
             	 userFone.setNome(resutado.getString("nome"));
             	 userFone.setNumero(resutado.getString("numero"));
             	 userFone.setEmail(resutado.getString("email"));
             	 
-            	 listUserfone.add(userFone);          	   
+            	 listUserfone.add(userFone);        //adiciona os dados coletados a lista  	   
             	   
                }
 				
-			} catch (Exception e) {
-				e.printStackTrace();
+			
+		return listUserfone;	 //retorna a lisa
+	}//fim do metodo mostrar usuarios com telefone
+		
+	public void deleteFonePorUser(Long idUser) {
+		try {
+			String sqlFone = " delete from tefoneuser where usuariopessoa = "+idUser;
+			String sqlUser = " delete from userposjava where id = "+idUser;
+			
+			PreparedStatement statement = connetion.prepareStatement(sqlFone);
+			statement.executeUpdate();    // muita atenção pois aqui tem que ser executeUpdate
+			connetion.commit();
+			
+		    statement = connetion.prepareStatement(sqlUser);
+			statement.executeUpdate();  // muita atenção pois aqui tem que ser executeUpdate
+			connetion.commit();
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}try {
+			connetion.rollback();	
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
+		}
 		
-		return listUserfone;	
+		
 	}
-		
 	
-	
-}
+

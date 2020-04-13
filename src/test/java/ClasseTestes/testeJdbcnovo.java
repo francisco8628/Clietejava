@@ -20,7 +20,7 @@ public class testeJdbcnovo {
 	}
 	
 	@Test
-	public  void InsereBanco() {     //insere os dados do cliente no banco
+	public  void InsereCliente() {     //insere os dados do cliente no banco
 		
 		UserPosDao userPosDao = new UserPosDao();
 		UserPosJava userPosJava = new UserPosJava();//objeto de modelo
@@ -28,8 +28,8 @@ public class testeJdbcnovo {
 		//userPosDao.savar(userPosJava);//passar o objeto com dados estaticos
 		
 		//userPosJava.setId(5L);  
-		userPosJava.setNome("mãe ");
-		userPosJava.setEmail("maria@gamail.com");
+		userPosJava.setNome("padaria");
+		userPosJava.setEmail("padoca@gmail.com");
         
 		userPosDao.Salvar(userPosJava);//passar o objeto modelo como parametro para  Dao
 	}//fim do inserir cliente
@@ -86,10 +86,10 @@ public class testeJdbcnovo {
 
 			UserPosDao dao = new UserPosDao();
 
-			UserPosJava objetoBanco = dao.Pesquisar(17L);
+			UserPosJava objetoBanco = dao.Pesquisar(24L);
 
-			objetoBanco.setNome("Benja");
-			objetoBanco.setEmail("cigano@gmail.com");
+			objetoBanco.setNome("chicoo");
+			objetoBanco.setEmail("chico@gmail.com");
 
 			dao.Atualizar(objetoBanco);
 
@@ -103,7 +103,7 @@ public class testeJdbcnovo {
 	public void DeletarCLiente() {// metodo de teste listar do banco (mostra todo o conteudo do banco)
         try {
 			UserPosDao dao = new UserPosDao();
-			dao.Deletar(23L);  //recebe o id do cliente para deletar
+			dao.Deletar(24L);  //recebe o id do cliente para deletar
 				
 		} catch (
 
@@ -122,9 +122,9 @@ public class testeJdbcnovo {
 			TefoneUser telefone = new TefoneUser();
 			UserPosDao dao = new UserPosDao();
 			
-		    telefone.setNumero("(19) 3481 7014");
+		    telefone.setNumero("33) 1478 08925");
 		    telefone.setTipo("casa");
-		    telefone.setUserPessoa(21L);
+		    telefone.setUserPessoa(26L);
 		    
 		    dao.SalvarTelefone(telefone);
 			
@@ -133,12 +133,12 @@ public class testeJdbcnovo {
 	
 	
 	@Test	
-	public void testeCarregarFoneUser() {
+	public void testeCarregarFoneUser() {  //mostra usuario com telefone cadastrado
 
 		UserPosDao dao = new UserPosDao();
 
 		try {
-			List<BeanUserFone> list = dao.listUserfone(16L);
+			List<BeanUserFone> list = dao.listUserfone(24L);  //deve colocar um id de usuario com telefone cadastrado
 			for (BeanUserFone beanUserFone : list) {
 				 
 		        //System.out.println(beanUserFone);
@@ -153,6 +153,14 @@ public class testeJdbcnovo {
 			e.printStackTrace();
 		}
 	} //fim listar
+	
+	@Test
+	public void deleteUserFone() {
+		
+		UserPosDao  ado = new  UserPosDao();
+		ado.deleteFonePorUser(26L);
+		
+	}
 		 
 	}
 	 
