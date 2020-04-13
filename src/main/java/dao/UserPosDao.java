@@ -99,10 +99,10 @@ public class UserPosDao {
 	public void Atualizar(UserPosJava userPosJava) { // crio a lista, difino o tipo, nomeio a lisa
 
 		try {
-			String sql = "update userposjava set nome = ? where id = " + userPosJava.getId();
+			String sql = "update userposjava set nome = ?, email = ? where id = " + userPosJava.getId();
 			PreparedStatement update = connetion.prepareStatement(sql); // prepara a conexão
 			update.setString(1, userPosJava.getNome());
-			//update.setString(2, userPosJava.getEmail());
+			update.setString(2, userPosJava.getEmail());
 			
 			update.execute();
 			connetion.commit();

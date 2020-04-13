@@ -86,10 +86,10 @@ public class testeJdbcnovo {
 
 			UserPosDao dao = new UserPosDao();
 
-			UserPosJava objetoBanco = dao.Pesquisar(24L);
+			UserPosJava objetoBanco = dao.Pesquisar(18L);
 
-			objetoBanco.setNome("chicoo");
-			objetoBanco.setEmail("chico@gmail.com");
+			objetoBanco.setNome("linda");
+			objetoBanco.setEmail("linda@gmail.com");
 
 			dao.Atualizar(objetoBanco);
 
@@ -103,7 +103,7 @@ public class testeJdbcnovo {
 	public void DeletarCLiente() {// metodo de teste listar do banco (mostra todo o conteudo do banco)
         try {
 			UserPosDao dao = new UserPosDao();
-			dao.Deletar(24L);  //recebe o id do cliente para deletar
+			dao.Deletar(31L);  //recebe o id do cliente para deletar
 				
 		} catch (
 
@@ -157,7 +157,7 @@ public class testeJdbcnovo {
 	@Test
 	public void deleteUserFone() {
 		
-		UserPosDao  ado = new  UserPosDao();
+		UserPosDao  ado = new  UserPosDao();   
 		ado.deleteFonePorUser(26L);
 		
 	}
