@@ -52,5 +52,32 @@ public class testeJdbcnovo {
 			e.printStackTrace();
 		}
 	} //fim listar
+	
+	@Test
+	public void PesquisaCliente() {// metodo buscar cliente pelo ID
+
+		UserPosDao dao = new UserPosDao();   //instacia Dao
+
+		try {
+			
+			UserPosJava busca = dao.Pesquisar(17L);
+			
+			System.out.println(busca.getId());
+			System.out.println(busca.getNome());
+			System.out.println(busca.getEmail());
+			System.out.println("--------------------------------");
+			
+				
+		} catch (
+
+		Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	} // fim Buscar
+	
+	
 
 }

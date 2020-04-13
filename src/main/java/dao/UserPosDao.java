@@ -79,7 +79,7 @@ public class UserPosDao {
 		ResultSet resulatado = select.executeQuery(); //a variavel resulatado vai armazenar os dados pegos pelo select
 		
 		while (resulatado.next()) {//enquanto tiver dados no resultado faça
-			UserPosJava userPosJava = new UserPosJava();  //instacio e cria objetos  Userposja para armazenar os dados até se false
+			//UserPosJava userPosJava = new UserPosJava();  //instacio e cria objetos  Userposja para armazenar os dados até se false
 			
 			buscar.setId(resulatado.getLong("id"));;         //seta o id do objeto com o que vier do resultado
 			buscar.setNome(resulatado.getString("nome"));    //seta o nome do objeto com o que vier do resultado 
