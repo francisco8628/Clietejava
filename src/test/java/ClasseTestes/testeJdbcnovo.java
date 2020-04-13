@@ -26,7 +26,7 @@ public class testeJdbcnovo {
 		//userPosDao.savar(userPosJava);//passar o objeto com dados estaticos
 		
 		//userPosJava.setId(5L);  
-		userPosJava.setNome("Mel");
+		userPosJava.setNome("carro");
 		userPosJava.setEmail("mel@gamail.com");
         
 		userPosDao.Salvar(userPosJava);//passar o objeto modelo como parametro para  Dao
@@ -97,6 +97,18 @@ public class testeJdbcnovo {
 
 	} // fim atualizar
 	
-	
+	@Test
+	public void Deletar() {// metodo de teste listar do banco (mostra todo o conteudo do banco)
+        try {
+			UserPosDao dao = new UserPosDao();
+			dao.Deletar(23L);
+				
+		} catch (
 
+		Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+	}
 }
