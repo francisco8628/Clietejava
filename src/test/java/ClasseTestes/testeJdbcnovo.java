@@ -1,5 +1,7 @@
 package ClasseTestes;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import conexaJdbc.SingleConnection;
@@ -16,7 +18,7 @@ public class testeJdbcnovo {
 	}
 	
 	@Test
-	public  void InsereBanco() {     //insere dados no banco
+	public  void InsereBanco() {     //insere os dados do cliente no banco
 		
 		UserPosDao userPosDao = new UserPosDao();
 		UserPosJava userPosJava = new UserPosJava();//objeto de modelo
@@ -28,6 +30,27 @@ public class testeJdbcnovo {
 		userPosJava.setEmail("mel@gamail.com");
         
 		userPosDao.Salvar(userPosJava);//passar o objeto modelo como parametro para  Dao
-	}
+	}//fim do inserir cliente
+	
+	@Test
+	public void InitListarClientes() {//metodo de teste listar do banco (mostra todo o conteudo do banco)
+
+		UserPosDao dao = new UserPosDao();
+
+		try {
+			List<UserPosJava> list = dao.Mostrar();
+			
+			for (UserPosJava userPosJava : list) {
+				System.out.println(userPosJava.getId());
+				System.out.println(userPosJava.getNome());
+				System.out.println(userPosJava.getEmail());
+				System.out.println("--------------------------------");
+				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} //fim listar
 
 }
