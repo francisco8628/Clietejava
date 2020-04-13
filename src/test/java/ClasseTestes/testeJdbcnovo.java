@@ -78,6 +78,25 @@ public class testeJdbcnovo {
 		
 	} // fim Buscar
 	
+	@Test
+	public void AtualizarClinteNome() {// metodo de teste listar do banco (mostra todo o conteudo do banco)
+		try {
+
+			UserPosDao dao = new UserPosDao();
+
+			UserPosJava objetoBanco = dao.Pesquisar(17L);
+
+			objetoBanco.setNome("Benja");
+			objetoBanco.setEmail("cigano@gmail.com");
+
+			dao.Atualizar(objetoBanco);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	} // fim atualizar
+	
 	
 
 }
