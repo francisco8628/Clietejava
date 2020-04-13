@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import conexaJdbc.SingleConnection;
 import dao.UserPosDao;
+import model.TefoneUser;
 import model.UserPosJava;
 
 
@@ -98,10 +99,10 @@ public class testeJdbcnovo {
 	} // fim atualizar
 	
 	@Test
-	public void Deletar() {// metodo de teste listar do banco (mostra todo o conteudo do banco)
+	public void DeletarCLiente() {// metodo de teste listar do banco (mostra todo o conteudo do banco)
         try {
 			UserPosDao dao = new UserPosDao();
-			dao.Deletar(23L);
+			dao.Deletar(23L);  //recebe o id do cliente para deletar
 				
 		} catch (
 
@@ -110,5 +111,26 @@ public class testeJdbcnovo {
 		}
 	
 	
+	} //fim deletar cliente
+	
+	
+	@Test
+	public void CadastrarTelefone() {
+		
+		
+			TefoneUser telefone = new TefoneUser();
+			UserPosDao dao = new UserPosDao();
+			
+		    telefone.setNumero("(19) 3481 7014");
+		    telefone.setTipo("casa");
+		    telefone.setUserPessoa(16L);
+		    
+		    dao.SalvarTelefone(telefone);
+			
+		
+		}//fim do metodo Salvar telefone
+		
 	}
-}
+	
+		
+

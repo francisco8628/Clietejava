@@ -3,10 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import conexaJdbc.SingleConnection;
+import model.TefoneUser;
 import model.UserPosJava;
 
 public class UserPosDao {
@@ -138,27 +140,29 @@ public class UserPosDao {
 
 	}// end do Deletar
 	
-	/*public void SalvarTelefone(TefoneUser telefoneUser) {//instaciar um objeto de modelo tipo UserposJava
+	public void SalvarTelefone(TefoneUser telefoneUser) {//instaciar um objeto de modelo tipo UserposJava
 		try {
-		String sql = "insert into tefoneuser(nome,tipo,usuariopessoa)values(?,?,?)";
+		String sql = "insert into tefoneuser(numero,tipo,usuariopessoa)values(?,?,?)";
 		PreparedStatement insertTelefone= connetion.prepareStatement(sql);   //prepara a conexão
 		insertTelefone.setString(1, telefoneUser.getNumero());//prepara o nome
 		insertTelefone.setString(2,telefoneUser.getTipo());//prepara o email
 		insertTelefone.setLong(3,telefoneUser.getUserPessoa());
+		
 		insertTelefone.execute();//envia os dados para o banco
 		connetion.commit();//chama a conexão e salva no banco
 		
 		
 		}catch (Exception e) {
-			e.printStackTrace();
+			
 			try {
+				e.printStackTrace();
 				connetion.rollback();//se der erro reverte dentro do banco de dados
-			} catch (Exception e2) {
+			} catch (SQLException e1) {
 				// TODO: handle exception
-				e2.printStackTrace();
+				e1.printStackTrace();
 				
 			}
 		}
-	}//fim do metodo salvar*/
+	}//fim do metodo salvarTelefone
 		
 }
