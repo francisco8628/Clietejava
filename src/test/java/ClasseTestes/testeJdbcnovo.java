@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import conexaJdbc.SingleConnection;
 import dao.UserPosDao;
+import model.BeanUserFone;
 import model.TefoneUser;
 import model.UserPosJava;
 
@@ -27,8 +28,8 @@ public class testeJdbcnovo {
 		//userPosDao.savar(userPosJava);//passar o objeto com dados estaticos
 		
 		//userPosJava.setId(5L);  
-		userPosJava.setNome("carro");
-		userPosJava.setEmail("mel@gamail.com");
+		userPosJava.setNome("mãe ");
+		userPosJava.setEmail("maria@gamail.com");
         
 		userPosDao.Salvar(userPosJava);//passar o objeto modelo como parametro para  Dao
 	}//fim do inserir cliente
@@ -123,14 +124,41 @@ public class testeJdbcnovo {
 			
 		    telefone.setNumero("(19) 3481 7014");
 		    telefone.setTipo("casa");
-		    telefone.setUserPessoa(16L);
+		    telefone.setUserPessoa(21L);
 		    
 		    dao.SalvarTelefone(telefone);
 			
 		
 		}//fim do metodo Salvar telefone
-		
-	}
 	
+	
+	@Test	
+	public void testeCarregarFoneUser() {
+
+		UserPosDao dao = new UserPosDao();
+
+		try {
+			List<BeanUserFone> list = dao.listUserfone(16L);
+			for (BeanUserFone beanUserFone : list) {
+				 
+		        //System.out.println(beanUserFone);
+				System.out.println(beanUserFone.getNome());
+				System.out.println(beanUserFone.getNumero());
+				System.out.println(beanUserFone.getEmail());
+				System.out.println("--------------------------------");
+				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} //fim listar
+		 
+	}
+	 
+		
+
+
+   
 		
 

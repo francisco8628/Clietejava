@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conexaJdbc.SingleConnection;
+import model.BeanUserFone;
 import model.TefoneUser;
 import model.UserPosJava;
 
@@ -164,5 +165,39 @@ public class UserPosDao {
 			}
 		}
 	}//fim do metodo salvarTelefone
+	
+	public List<BeanUserFone> listUserfone(Long idUser) {
 		
+		List<BeanUserFone> listUserfone = new ArrayList<BeanUserFone>();
+		
+		    String sql = " select nome, numero, email from tefoneuser as fone "; 
+			sql +=	" inner join userposjava as userp ";
+			sql +=	" on fone.usuariopessoa = userp.id ";
+			sql +=	" where userp.id = "+ idUser;
+		    
+			try {
+				
+				PreparedStatement statement = connetion.prepareStatement(sql);
+                ResultSet resutado = statement.executeQuery();
+                
+               while(resutado.next()) {
+            	 BeanUserFone userFone = new BeanUserFone();
+            	 
+            	 userFone.setNome(resutado.getString("nome"));
+            	 userFone.setNumero(resutado.getString("numero"));
+            	 userFone.setEmail(resutado.getString("email"));
+            	 
+            	 listUserfone.add(userFone);          	   
+            	   
+               }
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		return listUserfone;	
+	}
+		
+	
+	
 }
